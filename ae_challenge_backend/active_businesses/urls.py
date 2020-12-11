@@ -7,4 +7,9 @@ urlpatterns = [
         views.business_most_location,
         name="business_most_location",
     ),
+    path(
+        "api/oldest_location/",
+        views.oldest_location,
+        name="oldest_location",
+    ),
 ]
