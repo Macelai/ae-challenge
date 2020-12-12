@@ -127,3 +127,6 @@ STATIC_URL = "/static/"
 
 # CORS configuration
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+
+
+DATA_LACITY_APP_TOKEN = "rJB4D6X7r05yQMM356blksvgN"
