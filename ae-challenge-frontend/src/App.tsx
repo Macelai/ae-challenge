@@ -12,7 +12,7 @@ function App() {
   });
 
   const getOldestLocation = () => {
-    fetch(`http://127.0.0.1:8000/api/oldest_location/`)
+    fetch(`http://127.0.0.1:8000/api/oldest_location`)
       .then((res) => res.json())
       .then((res) => {
         setOldestLocation(res);
@@ -21,7 +21,7 @@ function App() {
   };
 
   const getBusinessMostLocation = () => {
-    fetch(`http://127.0.0.1:8000/api/business_most_location/`)
+    fetch(`http://127.0.0.1:8000/api/business_most_location`)
       .then((res) => res.json())
       .then((res) => {
         setBusinessMostLocation(res);
