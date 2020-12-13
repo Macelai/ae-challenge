@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Card from "./Card";
+import { API_URL } from "./Endpoints";
+import { Endpoints } from "./Endpoints";
 import "./index.css";
 
 function App() {
@@ -12,23 +14,19 @@ function App() {
     number_of_locations: 0,
   });
 
-  const getOldestLocation = () => {
-    fetch(`http://127.0.0.1:8000/api/oldest_location`)
+  function getOldestLocation() {
+    fetch(`${API_URL}/${Endpoints.BusinessOldestLocation}`)
       .then((res) => res.json())
-      .then((res) => {
-        setOldestLocation(res);
-      })
+      .then((res) => setOldestLocation(res))
       .catch((error) => console.log(error));
-  };
+  }
 
-  const getBusinessMostLocation = () => {
-    fetch(`http://127.0.0.1:8000/api/business_most_location`)
+  function getBusinessMostLocation() {
+    fetch(`${API_URL}/${Endpoints.BusinessMostLocation}`)
       .then((res) => res.json())
-      .then((res) => {
-        setBusinessMostLocation(res);
-      })
+      .then((res) => setBusinessMostLocation(res))
       .catch((error) => console.log(error));
-  };
+  }
 
   return (
     <div className="page center">
