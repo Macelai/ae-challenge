@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./App.css";
+import "./index.css";
 
 function App() {
   const [oldestLocation, setOldestLocation] = useState({
@@ -30,18 +30,17 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {oldestLocation.business} <br></br>
-        {oldestLocation.date}
-        <br></br>
-        {mostLocation.business} <br></br>
-        {mostLocation.value}
-        <button onClick={getOldestLocation}>Get Oldest Location</button>
-        <button onClick={getBusinessMostLocation}>
-          Get Business With Most Location
-        </button>
-      </header>
+    <div>
+      <p className="text-sm font-medium text-purple-900">Successfully saved!</p>
+      {oldestLocation.business} <br></br>
+      {oldestLocation.date}
+      <br></br>
+      {mostLocation.business} <br></br>
+      {mostLocation.value}
+      <button onClick={getOldestLocation}>Get Oldest Location</button>
+      <button onClick={getBusinessMostLocation}>
+        Get Business With Most Location
+      </button>
     </div>
   );
 }
