@@ -30,17 +30,37 @@ function App() {
   };
 
   return (
-    <div>
-      <p className="text-sm font-medium text-purple-900">Successfully saved!</p>
-      {oldestLocation.business} <br></br>
-      {oldestLocation.date}
-      <br></br>
-      {mostLocation.business} <br></br>
-      {mostLocation.value}
-      <button onClick={getOldestLocation}>Get Oldest Location</button>
-      <button onClick={getBusinessMostLocation}>
-        Get Business With Most Location
-      </button>
+    <div className="page center">
+      <div className="space-y-4">
+        <div className="flow-root">
+          <div className="my-4 center">
+            <div className="mx-10 pt-15">
+              <div className="grid gap-6 mb-8 md:grid-cols-2 center">
+                <div className="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                  <h4 className="mb-4 font-semibold text-gray-600 dark:text-gray-300">
+                    {oldestLocation.business}
+                    {mostLocation.business} <br></br>
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {oldestLocation.date}
+                    {mostLocation.value}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flow-root">
+          <div className="my-4">
+            <button className="btn-primary mr-8" onClick={getOldestLocation}>
+              Get Oldest Location
+            </button>
+            <button className="btn-primary" onClick={getBusinessMostLocation}>
+              Get Most Location
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
