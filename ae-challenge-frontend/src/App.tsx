@@ -2,13 +2,29 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [state, setState] = useState({ business: "", date: "" });
+  const [oldestLocation, setOldestLocation] = useState({
+    business: "",
+    date: "",
+  });
+  const [mostLocation, setBusinessMostLocation] = useState({
+    business: "",
+    value: "",
+  });
 
-  const sendRequest = () => {
+  const getOldestLocation = () => {
     fetch(`http://127.0.0.1:8000/api/oldest_location/`)
       .then((res) => res.json())
       .then((res) => {
-        setState(res);
+        setOldestLocation(res);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getBusinessMostLocation = () => {
+    fetch(`http://127.0.0.1:8000/api/business_most_location/`)
+      .then((res) => res.json())
+      .then((res) => {
+        setBusinessMostLocation(res);
       })
       .catch((error) => console.log(error));
   };
@@ -16,9 +32,15 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {state.business} <br></br>
-        {state.date}
-        <button onClick={sendRequest}>Click me</button>
+        {oldestLocation.business} <br></br>
+        {oldestLocation.date}
+        <br></br>
+        {mostLocation.business} <br></br>
+        {mostLocation.value}
+        <button onClick={getOldestLocation}>Get Oldest Location</button>
+        <button onClick={getBusinessMostLocation}>
+          Get Business With Most Location
+        </button>
       </header>
     </div>
   );
