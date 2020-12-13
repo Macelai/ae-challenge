@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import Card from "./Card";
 import "./index.css";
 
 function App() {
   const [oldestLocation, setOldestLocation] = useState({
-    business: "",
-    date: "",
+    business_name: "",
+    initial_date: "",
   });
   const [mostLocation, setBusinessMostLocation] = useState({
-    business: "",
-    value: "",
+    business_name: "",
+    number_of_locations: 0,
   });
 
   const getOldestLocation = () => {
@@ -35,18 +36,12 @@ function App() {
         <div className="flow-root">
           <div className="my-4 center">
             <div className="mx-10 pt-15">
-              <div className="grid gap-6 mb-8 md:grid-cols-2 center">
-                <div className="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                  <h4 className="mb-4 font-semibold text-gray-600 dark:text-gray-300">
-                    {oldestLocation.business}
-                    {mostLocation.business} <br></br>
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {oldestLocation.date}
-                    {mostLocation.value}
-                  </p>
-                </div>
-              </div>
+              <Card {...oldestLocation} />
+            </div>
+          </div>
+          <div className="my-4 center">
+            <div className="mx-10 pt-15">
+              <Card {...mostLocation} />
             </div>
           </div>
         </div>

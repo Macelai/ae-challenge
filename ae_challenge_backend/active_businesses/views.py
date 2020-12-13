@@ -22,7 +22,7 @@ def business_most_location(request):
             else:
                 dict_res[active_business["business_name"]] += 1
         key, value = _maximum_keys(dict_res)
-        return Response({"business": key, "value": value})
+        return Response({"business_name": key, "number_of_locations": value})
     else:
         return Response(status=500)
 
@@ -46,7 +46,10 @@ def oldest_location(request):
                     oldest = datetime_object
                     business = active_business
         return Response(
-            {"business": business["business_name"], "date": oldest.isoformat()}
+            {
+                "business_name": business["business_name"],
+                "initial_date": oldest.isoformat(),
+            }
         )
     else:
         return Response(status=500)
