@@ -1,19 +1,23 @@
 repos:
--   repo: https://github.com/ambv/black
+  - repo: https://github.com/ambv/black
     rev: stable
     hooks:
-    - id: black
-      language_version: python3.9
--   repo: https://github.com/pre-commit/pre-commit-hooks
+      - id: black
+        language_version: python3.9
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.3.0
     hooks:
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
--   repo: https://github.com/pre-commit/pre-commit-hooks
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v1.2.3
     hooks:
-    - id: flake8
--   repo: https://github.com/pre-commit/mirrors-isort
+      - id: flake8
+  - repo: https://github.com/pre-commit/mirrors-isort
     rev: v5.6.4
     hooks:
-    -   id: isort
+      - id: isort
+  - repo: https://github.com/prettier/pre-commit
+    rev: main
+    hooks:
+      - id: prettier
