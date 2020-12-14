@@ -7,8 +7,6 @@ from requests import Response
 
 from .exceptions import ServiceUnavailable
 
-LA_CITY_BUSINESSES_API = "https://data.lacity.org/resource/6rrh-rzua.json"
-
 
 def get_business_with_most_location() -> Tuple:
     response = _fetch_businesses_from_la_api()
@@ -58,7 +56,7 @@ def _fetch_businesses_from_la_api() -> Response:
             "Content-type": "application/json",
         }
     )
-    response = session.get(LA_CITY_BUSINESSES_API, timeout=10)
+    response = session.get(settings.LA_CITY_BUSINESSES_API, timeout=10)
     return response
 
 

@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -128,5 +132,6 @@ STATIC_URL = "/static/"
 # CORS configuration
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 
+DATA_LACITY_APP_TOKEN = os.getenv("DATA_LACITY_APP_TOKEN")
 
-DATA_LACITY_APP_TOKEN = "rJB4D6X7r05yQMM356blksvgN"
+LA_CITY_BUSINESSES_API = os.getenv("LA_CITY_BUSINESSES_API")
