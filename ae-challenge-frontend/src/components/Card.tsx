@@ -2,7 +2,7 @@ import React from "react";
 import { BusinessType } from "../interfaces/types";
 
 function Card(props: BusinessType & { title: string }) {
-  if (!props.business_name) {
+  if (!props.businessName) {
     return <div></div>;
   }
   return (
@@ -16,28 +16,28 @@ function Card(props: BusinessType & { title: string }) {
           <input
             type="text"
             className="input-primary"
-            value={props.business_name}
+            value={props.businessName}
             disabled
           ></input>
         </label>
-        {props.initial_date && (
+        {props.initialDate && (
           <label className="block">
             <span className="text-gray-700">Date</span>
             <input
               type="text"
               className="input-primary"
-              value={props.initial_date}
+              value={props.initialDate}
               disabled
             ></input>
           </label>
         )}
-        {props.number_of_locations && (
+        {props.numberOfLocations && (
           <label className="block">
             <span className="text-gray-700">Number</span>
             <input
               type="text"
               className="input-primary"
-              value={props.number_of_locations}
+              value={props.numberOfLocations}
               disabled
             ></input>
           </label>

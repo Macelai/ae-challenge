@@ -8,9 +8,9 @@ import {
 
 function App() {
   const emptyState = {
-    business_name: "",
-    initial_date: "",
-    number_of_locations: 0,
+    businessName: "",
+    initialDate: "",
+    numberOfLocations: 0,
     title: "",
   };
   const [business, setBusiness] = useState(emptyState);
