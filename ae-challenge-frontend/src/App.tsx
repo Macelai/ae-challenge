@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Card from "./components/Card";
-import { API_URL } from "./Endpoints";
-import { Endpoints } from "./Endpoints";
 import "./index.css";
+import {
+  fetchBusinessMostLocation,
+  fetchBusinessOldestLocation,
+} from "./services/service";
 
 function App() {
   const [business, setBusiness] = useState({
@@ -13,7 +15,7 @@ function App() {
   });
   const [isLoading, setLoading] = useState(false);
 
-  function getOldestLocation() {
+  async function getOldestLocation() {
     setBusiness({
       business_name: "",
       initial_date: "",
@@ -21,16 +23,12 @@ function App() {
       title: "Business With Oldest Location",
     });
     setLoading(true);
-    fetch(`${API_URL}/${Endpoints.BusinessOldestLocation}`)
-      .then((res) => res.json())
-      .then((res) =>
-        setBusiness({ ...res, title: "Business With Oldest Location" })
-      )
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+    const business = await fetchBusinessOldestLocation();
+    setBusiness({ ...business, title: "Business With Oldest Location" });
+    setLoading(false);
   }
 
-  function getBusinessMostLocation() {
+  async function getBusinessMostLocation() {
     setBusiness({
       business_name: "",
       initial_date: "",
@@ -38,13 +36,9 @@ function App() {
       title: "Business With Oldest Location",
     });
     setLoading(true);
-    fetch(`${API_URL}/${Endpoints.BusinessMostLocation}`)
-      .then((res) => res.json())
-      .then((res) =>
-        setBusiness({ ...res, title: "Business With Most Location" })
-      )
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+    const business = await fetchBusinessMostLocation();
+    setBusiness({ ...business, title: "Business With Most Location" });
+    setLoading(false);
   }
 
   return (

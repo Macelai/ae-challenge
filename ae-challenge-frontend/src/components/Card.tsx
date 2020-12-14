@@ -1,5 +1,5 @@
-import { BusinessType } from "../interfaces/types";
 import React from "react";
+import { BusinessType } from "../interfaces/types";
 
 function Card(props: BusinessType) {
   if (!props.business_name) {
