@@ -1,7 +1,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .service import get_business_with_most_location, get_business_with_oldest_location
+from .service import (get_business_with_most_location,
+                      get_business_with_oldest_location)
 
 
 @api_view(["GET"])

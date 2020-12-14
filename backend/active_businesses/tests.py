@@ -1,13 +1,13 @@
 from unittest.mock import patch
 
+from django.conf import settings
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 
 from .exceptions import ServiceUnavailable
-from .service import (LA_CITY_BUSINESSES_API,
-                      get_business_with_most_location,
+from .service import (get_business_with_most_location,
                       get_business_with_oldest_location)
 
 
@@ -36,7 +36,9 @@ class TestActiveBusinesses(TestCase):
                 {"business_name": "test", "number_of_locations": 1}
             ]
             get_business_with_most_location()
-            mock_get.assert_called_with(LA_CITY_BUSINESSES_API, timeout=10)
+            mock_get.assert_called_with(
+                settings.LA_CITY_BUSINESSES_API, timeout=10
+            )
 
     def test_should_fetch_third_party_api_oldest_location(self):
         with patch(
@@ -50,7 +52,9 @@ class TestActiveBusinesses(TestCase):
                 }
             ]
             get_business_with_oldest_location()
-            mock_get.assert_called_with(LA_CITY_BUSINESSES_API, timeout=10)
+            mock_get.assert_called_with(
+                settings.LA_CITY_BUSINESSES_API, timeout=10
+            )
 
     def test_should_raise_exception_business_most_location(self):
         with patch(
