@@ -1,7 +1,7 @@
 import React from "react";
 import { BusinessType } from "../interfaces/types";
 
-function Card(props: BusinessType) {
+function Card(props: BusinessType & { title: string }) {
   if (!props.business_name) {
     return <div></div>;
   }

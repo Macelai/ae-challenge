@@ -7,37 +7,26 @@ import {
 } from "./services/service";
 
 function App() {
-  const [business, setBusiness] = useState({
+  const emptyState = {
     business_name: "",
     initial_date: "",
     number_of_locations: 0,
     title: "",
-  });
+  };
+  const [business, setBusiness] = useState(emptyState);
   const [isLoading, setLoading] = useState(false);
+  const [title, setTitle] = useState("");
 
-  async function getOldestLocation() {
-    setBusiness({
-      business_name: "",
-      initial_date: "",
-      number_of_locations: 0,
-      title: "Business With Oldest Location",
-    });
-    setLoading(true);
-    const business = await fetchBusinessOldestLocation();
-    setBusiness({ ...business, title: "Business With Oldest Location" });
-    setLoading(false);
+  function resetBusiness() {
+    setBusiness(emptyState);
   }
 
-  async function getBusinessMostLocation() {
-    setBusiness({
-      business_name: "",
-      initial_date: "",
-      number_of_locations: 0,
-      title: "Business With Oldest Location",
-    });
+  async function fetchBusiness(fetchData: Function, title: string) {
+    resetBusiness();
     setLoading(true);
-    const business = await fetchBusinessMostLocation();
-    setBusiness({ ...business, title: "Business With Most Location" });
+    const business = await fetchData();
+    setBusiness(business);
+    setTitle(title);
     setLoading(false);
   }
 
@@ -52,16 +41,32 @@ function App() {
           )}
           <div className="my-3">
             <div className="mx-10 pt-15">
-              <Card {...business} />
+              <Card {...business} title={title} />
             </div>
           </div>
         </div>
         <div className="flow-root">
           <div className="my-4">
-            <button className="btn-primary mr-8" onClick={getOldestLocation}>
+            <button
+              className="btn-primary mr-8"
+              onClick={() =>
+                fetchBusiness(
+                  fetchBusinessOldestLocation,
+                  "Business With Oldest Location"
+                )
+              }
+            >
               Get Oldest Location
             </button>
-            <button className="btn-primary" onClick={getBusinessMostLocation}>
+            <button
+              className="btn-primary"
+              onClick={() =>
+                fetchBusiness(
+                  fetchBusinessMostLocation,
+                  "Business With Most Location"
+                )
+              }
+            >
               Get Most Location
             </button>
           </div>
