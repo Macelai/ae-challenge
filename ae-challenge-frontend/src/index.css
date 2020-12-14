@@ -21,6 +21,10 @@
   align-items: center;
 }
 
+.input-primary {
+  @apply mt-1 block w-full bg-gray-100 text-indigo-600;
+}
+
 .loader {
   border-top-color: #5f3280;
   -webkit-animation: spinner 1.5s linear infinite;
