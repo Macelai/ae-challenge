@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Card from "./Card";
+import Card from "./components/Card";
 import { API_URL } from "./Endpoints";
 import { Endpoints } from "./Endpoints";
 import "./index.css";
@@ -51,11 +51,11 @@ function App() {
     <div className="page center">
       <div className="space-y-4">
         <div className="flow-root">
-          {isLoading ? (
+          {isLoading && (
             <div className="center">
               <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
             </div>
-          ) : null}
+          )}
           <div className="my-3">
             <div className="mx-10 pt-15">
               <Card {...business} />
