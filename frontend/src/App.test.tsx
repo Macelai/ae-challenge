@@ -1,9 +1,31 @@
+import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
-import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders learn react link", () => {
+beforeEach(() => {
+  const responseFromApi = { business_name: "AEstudio" };
+  const response = new Response(JSON.stringify(responseFromApi), {
+    status: 200,
+  });
+  jest.spyOn(global, "fetch").mockResolvedValueOnce(Promise.resolve(response));
+});
+
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
+test("click get oldest location", async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const linkElement = screen.getByText("Get Oldest Location");
+  await waitFor(() => linkElement.click());
+  const inputElement = screen.getByDisplayValue(/AEstudio/i);
+  expect(inputElement).toBeDefined();
+});
+
+test("click get business with most location", async () => {
+  render(<App />);
+  const linkElement = screen.getByText("Get Most Location");
+  await waitFor(() => linkElement.click());
+  const inputElement = screen.getByDisplayValue(/AEstudio/i);
+  expect(inputElement).toBeDefined();
 });
