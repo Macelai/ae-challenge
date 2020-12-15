@@ -18,7 +18,7 @@ function Card(props: BusinessType & { title: string }) {
             className="input-primary"
             value={props.businessName}
             disabled
-          ></input>
+          />
         </label>
         {props.initialDate && (
           <label className="block">
@@ -28,7 +28,7 @@ function Card(props: BusinessType & { title: string }) {
               className="input-primary"
               value={props.initialDate}
               disabled
-            ></input>
+            />
           </label>
         )}
         {props.numberOfLocations && (
@@ -39,7 +39,7 @@ function Card(props: BusinessType & { title: string }) {
               className="input-primary"
               value={props.numberOfLocations}
               disabled
-            ></input>
+            />
           </label>
         )}
       </div>

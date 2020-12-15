@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Card from "./components/Card";
 import "./index.css";
+import { BusinessType } from "./interfaces/types";
 import {
   fetchBusinessMostLocation,
   fetchBusinessOldestLocation,
@@ -11,7 +12,6 @@ function App() {
     businessName: "",
     initialDate: "",
     numberOfLocations: 0,
-    title: "",
   };
   const [business, setBusiness] = useState(emptyState);
   const [isLoading, setLoading] = useState(false);
@@ -21,7 +21,10 @@ function App() {
     setBusiness(emptyState);
   }
 
-  async function fetchBusiness(fetchData: Function, title: string) {
+  async function fetchBusiness(
+    fetchData: () => Promise<BusinessType>,
+    title: string
+  ) {
     resetBusiness();
     setLoading(true);
     const business = await fetchData();
