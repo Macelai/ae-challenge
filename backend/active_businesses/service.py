@@ -9,6 +9,10 @@ from .exceptions import ServiceUnavailable
 
 
 def get_business_with_most_location() -> Tuple:
+    """
+    Fetches LA API and returns the business with most locations
+    :return Tuple: business name and number of locations
+    """
     response = _fetch_businesses_from_la_api()
     business_to_number_of_location = dict()
     if response.status_code == 200:
@@ -19,18 +23,23 @@ def get_business_with_most_location() -> Tuple:
                 business_to_number_of_location[business_name] = 1
             else:
                 business_to_number_of_location[business_name] += 1
-        business, value = _get_max_business_occurrence(
-            business_to_number_of_location
-        )
+        (
+            business_name_from_max,
+            number_of_locations,
+        ) = _get_max_business_occurrence(business_to_number_of_location)
     else:
         raise ServiceUnavailable()
-    return business, value
+    return business_name_from_max, number_of_locations
 
 
 def get_business_with_oldest_location() -> Tuple:
+    """
+    Fetches LA API and returns the oldest business from first page
+    :return Tuple: business name and date
+    """
     response = _fetch_businesses_from_la_api()
     oldest_datetime = datetime.utcnow()
-    business = ""
+    business_name = ""
     if response.status_code == 200:
         businesses_list = response.json()
         for active_business in businesses_list:
@@ -42,13 +51,17 @@ def get_business_with_oldest_location() -> Tuple:
                 )
                 if start_date_as_datetime < oldest_datetime:
                     oldest_datetime = start_date_as_datetime
-                    business = active_business
+                    business_name = active_business
     else:
         raise ServiceUnavailable()
-    return business, oldest_datetime
+    return business_name, oldest_datetime
 
 
 def _fetch_businesses_from_la_api() -> Response:
+    """
+    Fetches the list of active businesses from LA API
+    :return Response: response from LA API
+    """
     session = requests.Session()
     session.headers.update(
         {
@@ -63,6 +76,10 @@ def _fetch_businesses_from_la_api() -> Response:
 def _get_max_business_occurrence(
     business_to_occurrence: Dict[str, int]
 ) -> Tuple:
+    """
+    Return the the key and value for the greatest value on dictionary values
+    :return Tuple: business name and value
+    """
     max_value = max(business_to_occurrence.values())
     business = next(
         filter(
