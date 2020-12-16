@@ -1,6 +1,6 @@
 # AE Studio Challenge
 
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/macelai/ae-challenge/blob/master/LICENCE.md)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Macelai/ae-challenge/blob/main/LICENSE.md)
 [![frontend](https://codecov.io/gh/Macelai/ae-challenge/branch/main/graph/badge.svg?token=K9QW5P74MI)](https://codecov.io/gh/Macelai/ae-challenge)
 ![React App](https://github.com/Macelai/ae-challenge/workflows/Test%20React%20App/badge.svg)
 ![Django REST API](https://github.com/Macelai/ae-challenge/workflows/Test%20Django%20REST%20API/badge.svg)
