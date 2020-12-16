@@ -23,4 +23,8 @@ jobs:
         LA_CITY_BUSINESSES_API: https://data.lacity.org/resource/6rrh-rzua.json
       run: |
         cd backend
-        python manage.py test
+        coverage run --source='.' manage.py test active_businesses
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
