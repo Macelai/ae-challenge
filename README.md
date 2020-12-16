@@ -33,21 +33,13 @@ Running tests:
 
 Launches the test runner in the interactive watch mode.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
 #### Backend
 
 Go to backend directory:
 
     cd backend
 
-Install requirements:
+Install dev requirements:
 
     pip install -r devrequirements.txt
 
@@ -69,6 +61,9 @@ Running tests:
     python manage.py test
 
 ## Code Style and Quality
+
+There is github actions setup for the project, it will run tests for both frontend and backend, will
+upload the code coverage to [Codecov](https://codecov.io/gh). This project has 100% test coverage.
 
 This project uses pre-commit to ensure code style and quality. Git hook scripts are useful
 for identifying simple issues before submission to code review. We run our hooks on every commit to automatically point
