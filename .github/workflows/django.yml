@@ -16,7 +16,7 @@ jobs:
         run: |
           cd backend
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r devrequirements.txt
       - name: Test Django REST API
         env:
           DATA_LACITY_APP_TOKEN: ${{ secrets.DATA_LACITY_APP_TOKEN }}
