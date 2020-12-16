@@ -2,9 +2,6 @@ import React from "react";
 import { BusinessType } from "../interfaces/types";
 
 function Card(props: BusinessType & { title: string }) {
-  if (!props.businessName) {
-    return <div></div>;
-  }
   return (
     <div className="grid gap-6 mb-8 md:grid-cols-2 center">
       <div className="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">

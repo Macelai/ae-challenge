@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Card from "./components/Card";
+import Error from "./components/Error";
 import "./index.css";
 import { BusinessType } from "./interfaces/types";
 import {
@@ -16,6 +17,7 @@ function App() {
   const [business, setBusiness] = useState(emptyState);
   const [isLoading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
+  const [errorText, setErrorText] = useState("");
 
   function resetBusiness() {
     setBusiness(emptyState);
@@ -25,12 +27,18 @@ function App() {
     fetchData: () => Promise<BusinessType>,
     title: string
   ) {
+    setErrorText("");
     resetBusiness();
     setLoading(true);
-    const business = await fetchData();
-    setBusiness(business);
-    setTitle(title);
-    setLoading(false);
+    try {
+      const business = await fetchData();
+      setBusiness(business);
+      setTitle(title);
+    } catch (e) {
+      setErrorText(e);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -44,7 +52,8 @@ function App() {
           )}
           <div className="my-3">
             <div className="mx-10 pt-15">
-              <Card {...business} title={title} />
+              {business.businessName && <Card {...business} title={title} />}
+              {errorText && <Error error={errorText} />}
             </div>
           </div>
         </div>
