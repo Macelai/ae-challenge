@@ -3,7 +3,11 @@ import React from "react";
 import App from "./App";
 
 beforeEach(() => {
-  const responseFromApi = { business_name: "AEstudio" };
+  const responseFromApi = {
+    business_name: "AEstudio",
+    initial_date: "2020",
+    number_of_locations: 2,
+  };
   const response = new Response(JSON.stringify(responseFromApi), {
     status: 200,
   });
