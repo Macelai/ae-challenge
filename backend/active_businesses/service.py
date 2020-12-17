@@ -11,6 +11,7 @@ from .exceptions import ServiceUnavailable
 def get_business_with_most_location() -> Tuple:
     """
     Fetches LA API and returns the business with most locations
+    from first page
     :return Tuple: business name and number of locations
     """
     response = _fetch_businesses_from_la_api()
@@ -51,7 +52,7 @@ def get_business_with_oldest_location() -> Tuple:
                 )
                 if start_date_as_datetime < oldest_datetime:
                     oldest_datetime = start_date_as_datetime
-                    business_name = active_business
+                    business_name = active_business["business_name"]
     else:
         raise ServiceUnavailable()
     return business_name, oldest_datetime
@@ -78,13 +79,14 @@ def _get_max_business_occurrence(
 ) -> Tuple:
     """
     Return the the key and value for the greatest value on dictionary values
+    :param Dict business_to_occurrence: maps business name to occurrence number
     :return Tuple: business name and value
     """
     max_value = max(business_to_occurrence.values())
-    business = next(
+    business_name = next(
         filter(
             lambda k: business_to_occurrence[k] == max_value,
             business_to_occurrence.keys(),
         )
     )
-    return business, max_value
+    return business_name, max_value

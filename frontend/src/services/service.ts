@@ -18,6 +18,6 @@ export async function fetchBusinessMostLocation(): Promise<BusinessType> {
   if (response.status === 503) {
     throw response.statusText;
   }
-  const businessOldestLocation = await response.json();
-  return camelcaseKeys(businessOldestLocation);
+  const businessMostLocation = await response.json();
+  return camelcaseKeys(businessMostLocation);
 }
